@@ -1,10 +1,17 @@
 package kz.bitlab.g128finalproject.service;
 
 import kz.bitlab.g128finalproject.entity.WorkingFormat;
+import kz.bitlab.g128finalproject.repository.WorkingFormatRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WorkingFormatService {
+
+    @Autowired
+    private WorkingFormatRepository workingFormatRepository;
 
     public Double getBonusPercentage(WorkingFormat workingFormat) {
         if (workingFormat == null) {
@@ -18,5 +25,13 @@ public class WorkingFormatService {
             case "Часовая" -> 1.0;
             default -> throw new IllegalStateException("UNSUPPORTED format " + workingFormat.getName());
         };
+    }
+
+    public List<WorkingFormat> getAllWorkingFormats() {
+        return workingFormatRepository.findAll();
+    }
+
+    public WorkingFormat getWorkingFormatById(Long id) {
+        return workingFormatRepository.findById(id).orElse(null);
     }
 }

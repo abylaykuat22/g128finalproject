@@ -33,6 +33,10 @@ public class DeveloperService {
         developerRepository.save(developer);
     }
 
+    public void addDeveloperFromExcel(Developer developer) {
+        developerRepository.save(developer);
+    }
+
     public void deleteDeveloperById(Long id) {
         developerRepository.deleteById(id);
     }
